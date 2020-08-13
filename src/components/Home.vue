@@ -11,7 +11,7 @@ export default {
   props: {},
   methods: {
     dispatchTest: function () {
-      this.$store.dispatch('auth/eventTestAction')
+      this.$store.dispatch('tasks/getTasks')
     }
   }
 };

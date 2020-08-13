@@ -22,3 +22,7 @@ export async function attemptLogin ( payload ) {
     store.commit('auth/SET_USER', response.data.userData)
   }
 }
+
+export async function getUserTasks (user) {
+  alert('hi ', user)
+}

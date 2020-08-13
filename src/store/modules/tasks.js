@@ -1,4 +1,4 @@
-import { } from '../../axios/events'
+import { getUserTasks } from '../../axios/events'
 
 export const state = {
   todos: null
@@ -11,8 +11,14 @@ export const mutations = {
 }
 
 export const actions = {
-  async getTasks ( ) {
-
+  async getTasks (store) {
+    let user = store.rootGetters['auth/getUserData']
+    if (user.id && user.email) {
+      getUserTasks(user)
+    } else {
+      alert('not signed in')
+    }
+    
   }
 }
 

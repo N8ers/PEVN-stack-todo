@@ -1,6 +1,7 @@
 import { attemptLogin } from '../../axios/events'
 
 export const state = {
+  test: "hi n9",
   user: {
     id: null,
     email: null,
@@ -36,8 +37,15 @@ export const actions = {
   }
 }
 
+export const getters = {
+  getUserData() {
+    return state.user
+  }
+}
+
 export default {
   namespaced: true,
   mutations,
-  actions
+  actions,
+  getters
 }
