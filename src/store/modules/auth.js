@@ -1,7 +1,6 @@
 import { attemptLogin } from '../../axios/events'
 
 export const state = {
-  test: "hi n9",
   user: {
     id: null,
     email: null,
@@ -14,9 +13,7 @@ export const mutations = {
     alert('mutation called')
   },
   SET_USER: function ( state, userPayload ) {
-    state.user.id = userPayload.id
-    state.user.email = userPayload.email
-    state.user.name = userPayload.name
+    state.user = userPayload
   },
   LOG_OUT_USER: function ( state ) {
     state.user.id = null
@@ -27,13 +24,8 @@ export const mutations = {
 }
 
 export const actions = {
-  async loginUser ( { commit }, user ) {
-    let result = await attemptLogin( user )
-
-    console.log('result: ', result)
-    if ( result ) {
-      commit('SET_USER', result)
-    }
+  async loginUser ( context, user ) {
+    await attemptLogin( user )
   }
 }
 
