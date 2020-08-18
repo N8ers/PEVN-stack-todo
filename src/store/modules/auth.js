@@ -16,9 +16,7 @@ export const mutations = {
     state.user = userPayload
   },
   LOG_OUT_USER: function ( state ) {
-    state.user.id = null
-    state.user.email = null
-    state.user.name = null
+    state.user = null
     localStorage.clear()
   }
 }
@@ -26,6 +24,9 @@ export const mutations = {
 export const actions = {
   async loginUser ( context, user ) {
     await attemptLogin( user )
+  },
+  async logoutUser ({ commit }) {
+    commit('LOG_OUT_USER');
   }
 }
 

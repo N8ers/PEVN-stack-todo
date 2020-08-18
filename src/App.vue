@@ -2,11 +2,25 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/auth">Auth</router-link>
+      <router-link to="/auth">Auth</router-link> |
+      <button @click="logoutUser">logout</button>
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {}
+  },
+  methods: {
+    logoutUser: function () {
+      this.$store.dispatch('auth/logoutUser')
+    }
+  }
+};
+</script>
 
 <style lang="scss">
 #app {
