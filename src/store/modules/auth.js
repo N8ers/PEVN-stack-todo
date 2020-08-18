@@ -1,4 +1,4 @@
-import { attemptLogin } from '../../axios/events'
+import { attemptLogin, attemptAuthentication } from '../../axios/events'
 
 export const state = {
   user: {
@@ -27,6 +27,9 @@ export const actions = {
   },
   async logoutUser ({ commit }) {
     commit('LOG_OUT_USER');
+  },
+  async authenticateToken (context, token) {
+    await attemptAuthentication(token)
   }
 }
 

@@ -23,6 +23,17 @@ export async function attemptLogin ( payload ) {
   }
 }
 
+export async function attemptAuthentication ( payload ) {
+  apiClient.defaults.headers['Authorization'] = `Bearer ${payload}`;
+  let response = await apiClient.post('/auth/check-jwt')
+
+  if (response.data.loginSuccess === 'false') {
+    alert('login failed')
+  } else {
+    store.commit('auth/SET_USER', response.data.userData)
+  }
+}
+
 export async function getUserTasks (user) {
   alert('hi ', user)
 }

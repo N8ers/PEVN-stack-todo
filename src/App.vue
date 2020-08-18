@@ -18,6 +18,12 @@ export default {
     logoutUser: function () {
       this.$store.dispatch('auth/logoutUser')
     }
+  },
+  created() {
+    const token = localStorage.getItem('token')
+    if (token) {
+      this.$store.dispatch('auth/authenticateToken', token)
+    }
   }
 };
 </script>
