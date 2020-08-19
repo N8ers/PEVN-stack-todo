@@ -34,6 +34,11 @@ export async function attemptAuthentication ( payload ) {
   }
 }
 
-export async function getUserTasks (user) {
-  alert('hi ', user)
+export async function getUserTasks () {
+  // I don't love how jwt is handled here
+  const token = localStorage.getItem('token')
+  apiClient.defaults.headers['Authorization'] = `Bearer ${token}`
+  let response = await apiClient.get('/tasks/getTasks')
+
+  store.commit('tasks/SET_TASKS', response.data.tasks)
 }

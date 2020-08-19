@@ -1,7 +1,9 @@
 <template>
   <div>
     <div>Home</div>
-    <button @click="dispatchTest">event test</button>
+    <button @click="getTasks">getTasks</button>
+    <br>
+    {{ tasks }}
   </div>
 </template>
 
@@ -10,8 +12,13 @@ export default {
   name: "Home",
   props: {},
   methods: {
-    dispatchTest: function () {
+    getTasks: function () {
       this.$store.dispatch('tasks/getTasks')
+    }
+  },
+  computed: {
+    tasks: function () {
+      return this.$store.state.tasks
     }
   }
 };

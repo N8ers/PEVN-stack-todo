@@ -6,7 +6,6 @@
       <input v-model="user.password" type="password" />
       <button type="submit">Sign In</button>
     </form>
-    <button @click="getTasks">get tasks (in console)</button>
   </div>
 </template>
 
@@ -25,9 +24,6 @@ export default {
   methods: {
     attemptLogin: function () {
       this.$store.dispatch('auth/loginUser', this.user)
-    },
-    getTasks: function () {
-      this.$store.dispatch('tasks/getTasks')
     }
   }
 };
