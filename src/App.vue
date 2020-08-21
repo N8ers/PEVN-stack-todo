@@ -12,17 +12,17 @@
 <script>
 export default {
   data() {
-    return {}
+    return {};
   },
   methods: {
-    logoutUser: function () {
-      this.$store.dispatch('auth/logoutUser')
+    logoutUser: function() {
+      this.$store.dispatch("auth/logoutUser");
     }
   },
   created() {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     if (token) {
-      this.$store.dispatch('auth/authenticateToken', token)
+      this.$store.dispatch("auth/authenticateToken", token);
     }
   }
 };

@@ -19,11 +19,11 @@ export default {
         email: null,
         password: null
       }
-    }
+    };
   },
   methods: {
-    attemptLogin: function () {
-      this.$store.dispatch('auth/loginUser', this.user)
+    attemptLogin: function() {
+      this.$store.dispatch("auth/loginUser", this.user);
     }
   }
 };

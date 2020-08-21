@@ -1,4 +1,4 @@
-import { attemptLogin, attemptAuthentication } from '../../axios/events'
+import { attemptLogin, attemptAuthentication } from "../../axios/events";
 
 export const state = {
   user: {
@@ -6,38 +6,38 @@ export const state = {
     email: null,
     name: null
   }
-}
+};
 
 export const mutations = {
-  mutationTest: function () {
-    alert('mutation called')
+  mutationTest: function() {
+    alert("mutation called");
   },
-  SET_USER: function ( state, userPayload ) {
-    state.user = userPayload
+  SET_USER: function(state, userPayload) {
+    state.user = userPayload;
   },
-  LOG_OUT_USER: function ( state ) {
-    state.user = null
-    localStorage.clear()
+  LOG_OUT_USER: function(state) {
+    state.user = null;
+    localStorage.clear();
   }
-}
+};
 
 export const actions = {
-  async loginUser ( context, user ) {
-    await attemptLogin( user )
+  async loginUser(context, user) {
+    await attemptLogin(user);
   },
-  async logoutUser ({ commit }) {
-    commit('LOG_OUT_USER');
+  async logoutUser({ commit }) {
+    commit("LOG_OUT_USER");
   },
-  async authenticateToken (context, token) {
-    await attemptAuthentication(token)
+  async authenticateToken(context, token) {
+    await attemptAuthentication(token);
   }
-}
+};
 
 export const getters = {
   getUserData() {
-    return state.user
+    return state.user;
   }
-}
+};
 
 export default {
   namespaced: true,
@@ -45,4 +45,4 @@ export default {
   mutations,
   actions,
   getters
-}
+};
