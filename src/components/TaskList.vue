@@ -2,7 +2,11 @@
   <div>
     <h3>Tasks!</h3>
     <div v-for="task in taskList" :key="task.id">
-      <input type="checkbox" :value="task.completed" />
+      <input
+        type="checkbox"
+        v-model="task.completed"
+        @change="toggleCheckbox(task)"
+      />
       <span>{{ task }}</span>
       <button @click="removeTask(task)">X</button>
     </div>
@@ -36,6 +40,9 @@ export default {
     },
     removeTask: function(task) {
       this.$store.dispatch("tasks/deleteTask", task);
+    },
+    toggleCheckbox: function(task) {
+      this.$store.dispatch("tasks/toggleCompletion", task);
     }
   }
 };

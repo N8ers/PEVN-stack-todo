@@ -1,4 +1,9 @@
-import { getUserTasks, addNewTask, deleteTask } from "../../axios/events";
+import {
+  getUserTasks,
+  addNewTask,
+  deleteTask,
+  toggleCompletion
+} from "../../axios/events";
 
 export const state = {
   tasks: null
@@ -28,6 +33,10 @@ export const actions = {
 
   async deleteTask(store, task) {
     await deleteTask(task);
+  },
+
+  async toggleCompletion(store, task) {
+    await toggleCompletion(task);
   }
 };
 
