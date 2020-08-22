@@ -42,3 +42,13 @@ export async function getUserTasks() {
 
   store.commit("tasks/SET_TASKS", response.data.tasks);
 }
+
+export async function addNewTask(newTask) {
+  const token = localStorage.getItem("token");
+  apiClient.defaults.headers["Authorization"] = `Bearer ${token}`;
+  let response = await apiClient.post("/tasks/addTask", newTask);
+
+  if (response.data.message && response.data.message === "success") {
+    getUserTasks();
+  }
+}

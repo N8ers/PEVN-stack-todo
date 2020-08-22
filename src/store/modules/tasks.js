@@ -1,4 +1,4 @@
-import { getUserTasks } from "../../axios/events";
+import { getUserTasks, addNewTask } from "../../axios/events";
 
 export const state = {
   tasks: null
@@ -20,6 +20,10 @@ export const actions = {
     } else {
       alert("not signed in");
     }
+  },
+
+  async addTask(store, newTask) {
+    await addNewTask(newTask);
   }
 };
 

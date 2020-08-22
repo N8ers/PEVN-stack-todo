@@ -6,9 +6,9 @@
       <span>{{ task }}</span>
     </div>
 
-    <form>
-      <input type="text" />
-      <button>add task</button>
+    <form @submit.prevent="addTask">
+      <input v-model="newTask.name" type="text" />
+      <button type="submit">add task</button>
     </form>
   </div>
 </template>
@@ -20,6 +20,19 @@ export default {
   name: "TaskList",
   props: {
     taskList: Array
+  },
+  data() {
+    return {
+      newTask: {
+        name: "",
+        sortOrder: this.taskList.length + 1
+      }
+    };
+  },
+  methods: {
+    addTask: function() {
+      this.$store.dispatch("tasks/addTask", this.newTask);
+    }
   }
 };
 </script>
