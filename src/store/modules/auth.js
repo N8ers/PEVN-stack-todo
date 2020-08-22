@@ -1,4 +1,8 @@
-import { attemptLogin, attemptAuthentication } from "../../axios/events";
+import {
+  attemptLogin,
+  attemptAuthentication,
+  attemptSignup
+} from "../../axios/events";
 
 export const state = {
   user: {
@@ -30,6 +34,9 @@ export const actions = {
   },
   async authenticateToken(context, token) {
     await attemptAuthentication(token);
+  },
+  async signupUser(context, newUser) {
+    await attemptSignup(newUser);
   }
 };
 

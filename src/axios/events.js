@@ -39,6 +39,16 @@ export async function attemptAuthentication(payload) {
   }
 }
 
+export async function attemptSignup(newUser) {
+  let response = await apiClient.post("/auth/createUser", newUser);
+
+  console.log(response);
+
+  if (response.data.message && response.data.message === "success") {
+    alert("GREAT! go ahead and log in!");
+  }
+}
+
 export async function getUserTasks() {
   setToken();
   let response = await apiClient.get("/tasks/getTasks");
@@ -68,5 +78,7 @@ export async function toggleCompletion(task) {
   setToken();
   let response = await apiClient.put("/tasks/toggleCompletion", task);
 
-  console.log("response ", response);
+  if (response.data.message && response.data.message === "success") {
+    getUserTasks();
+  }
 }

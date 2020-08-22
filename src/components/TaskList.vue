@@ -37,6 +37,7 @@ export default {
   methods: {
     addTask: function() {
       this.$store.dispatch("tasks/addTask", this.newTask);
+      this.newTask.name = "";
     },
     removeTask: function(task) {
       this.$store.dispatch("tasks/deleteTask", task);
