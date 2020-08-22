@@ -52,3 +52,13 @@ export async function addNewTask(newTask) {
     getUserTasks();
   }
 }
+
+export async function deleteTask(task) {
+  const token = localStorage.getItem("token");
+  apiClient.defaults.headers["Authorization"] = `Bearer ${token}`;
+  let response = await apiClient.post("/tasks/deleteTask", task);
+
+  if (response.data.message && response.data.message === "success") {
+    getUserTasks();
+  }
+}

@@ -4,6 +4,7 @@
     <div v-for="task in taskList" :key="task.id">
       <input type="checkbox" :value="task.completed" />
       <span>{{ task }}</span>
+      <button @click="removeTask(task)">X</button>
     </div>
 
     <form @submit.prevent="addTask">
@@ -32,6 +33,9 @@ export default {
   methods: {
     addTask: function() {
       this.$store.dispatch("tasks/addTask", this.newTask);
+    },
+    removeTask: function(task) {
+      this.$store.dispatch("tasks/deleteTask", task);
     }
   }
 };
