@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <div>Home</div>
-    <button @click="getTasks">getTasks</button>
+  <div class="container">
+    <h4 class="is-size-2">What needs to get done!</h4>
     <br />
     <TaskList v-if="tasks" :taskList="tasks" />
   </div>
@@ -24,6 +23,9 @@ export default {
     tasks: function() {
       return this.$store.state.tasks.tasks;
     }
+  },
+  created() {
+    this.getTasks();
   }
 };
 </script>

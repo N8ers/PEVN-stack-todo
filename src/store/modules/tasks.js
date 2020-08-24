@@ -28,6 +28,7 @@ export const actions = {
   },
 
   async addTask(store, newTask) {
+    console.log("newTask", newTask);
     await addNewTask(newTask);
   },
 
