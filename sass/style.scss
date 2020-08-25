@@ -1,2 +1,11 @@
-@import "_base.sass";
+@charset "utf-8";
+@import "../node_modules/bulma/bulma.sass";
+
+$primary: #42b983;
+$blue: #2c3e50;
+
+.is-blue {
+  background-color: $blue;
+  color: white;  
+}
 

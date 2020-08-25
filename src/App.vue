@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/auth">Auth</router-link> |
       <button class="button is-primary" @click="logoutUser">logout</button>
+      <button class="button is-blue">Hey</button>
     </div>
     <router-view />
   </div>
