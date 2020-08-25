@@ -23,7 +23,7 @@
       <input
         v-model="newTask.name"
         type="text"
-        class="input"
+        class="input input-width"
         placeholder="Feed the turtles..."
       />
       <button type="submit" class="button">add task</button>

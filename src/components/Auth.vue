@@ -7,10 +7,7 @@
           Tote bag mustache pabst tumeric microdosing everyday carry
           chicharrones. Readymade cred irony, raw denim tumeric kinfolk whatever
           cray pabst enamel pin coloring book shoreditch cardigan four dollar
-          toast. Deep v tousled williamsburg letterpress tumeric skateboard palo
-          santo bitters locavore salvia literally drinking vinegar tattooed hot
-          chicken. Hell of tilde freegan, mixtape pour-over dreamcatcher
-          succulents.
+          toast.
         </p>
       </div>
 
