@@ -1,8 +1,11 @@
 <template>
   <div>
     <table class="table">
-      <div class="tbody">
+      <draggable v-model="taskList" class="tbody">
         <tr class="tr" v-for="task in taskList" :key="task.id">
+          <td class="icon moveable">
+            <i class="fas fa-grip-vertical"></i>
+          </td>
           <td class="td">
             <input
               type="checkbox"
@@ -11,12 +14,15 @@
               @change="toggleCheckbox(task)"
             />
           </td>
-          <td class="td">{{ task.name }} || {{ task.sort_order }}</td>
+          <td class="td">
+            {{ task.name }} || {{ task.sort_order }} || 'recalculated sort
+            order'
+          </td>
           <td class="td">
             <button @click="removeTask(task)" class="button">X</button>
           </td>
         </tr>
-      </div>
+      </draggable>
     </table>
 
     <form @submit.prevent="addTask">
@@ -34,11 +40,14 @@
 // Nathan - we may want to make a task item component to handle toggling/editing
 
 <script>
+import draggable from "vuedraggable";
+
 export default {
   name: "TaskList",
   props: {
     taskList: Array
   },
+  components: { draggable },
   data() {
     return {
       newTask: {
@@ -50,6 +59,8 @@ export default {
   methods: {
     addTask: function() {
       this.$store.dispatch("tasks/addTask", this.newTask);
+      this.newTask.name = "";
+      this.newTask.sortOrder = this.taskList.length + 1;
     },
     removeTask: function(task) {
       this.$store.dispatch("tasks/deleteTask", task);
@@ -57,6 +68,7 @@ export default {
     toggleCheckbox: function(task) {
       this.$store.dispatch("tasks/toggleCompletion", task);
     }
-  }
+  },
+  computed: {}
 };
 </script>
