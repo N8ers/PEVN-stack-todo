@@ -51,16 +51,19 @@ export default {
   data() {
     return {
       newTask: {
-        name: "",
-        sortOrder: this.taskList.length + 1
+        name: ""
       }
     };
   },
   methods: {
     addTask: function() {
-      this.$store.dispatch("tasks/addTask", this.newTask);
-      this.newTask.name = "";
-      this.newTask.sortOrder = this.taskList.length + 1;
+      let newTask = {
+        name: this.newTask.name,
+        sortOrder: this.taskList.length + 1
+      };
+      this.$store.dispatch("tasks/addTask", newTask).then(() => {
+        this.newTask.name = "";
+      });
     },
     removeTask: function(task) {
       this.$store.dispatch("tasks/deleteTask", task);

@@ -42,8 +42,6 @@ export async function attemptAuthentication(payload) {
 export async function attemptSignup(newUser) {
   let response = await apiClient.post("/auth/createUser", newUser);
 
-  console.log(response);
-
   if (response.data.message && response.data.message === "success") {
     alert("GREAT! go ahead and log in!");
   }
