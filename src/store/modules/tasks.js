@@ -2,7 +2,8 @@ import {
   getUserTasks,
   addNewTask,
   deleteTask,
-  toggleCompletion
+  toggleCompletion,
+  updateTask
 } from "../../axios/events";
 
 export const state = {
@@ -31,6 +32,10 @@ export const actions = {
 
   async toggleCompletion(store, task) {
     await toggleCompletion(task);
+  },
+
+  async updateTask(store, task) {
+    await updateTask(task);
   }
 };
 

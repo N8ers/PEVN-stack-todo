@@ -80,3 +80,12 @@ export async function toggleCompletion(task) {
     getUserTasks();
   }
 }
+
+export async function updateTask(task) {
+  setToken();
+  let response = await apiClient.put("/tasks/updateTask", task);
+
+  if (response.data.message && response.data.message === "success") {
+    getUserTasks();
+  }
+}

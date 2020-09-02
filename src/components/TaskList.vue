@@ -52,7 +52,7 @@ export default {
       });
     },
     editTask: function(task) {
-      console.log("task ", task);
+      this.$store.dispatch("tasks/updateTask", task);
     },
     removeTask: function(task) {
       this.$store.dispatch("tasks/deleteTask", task);

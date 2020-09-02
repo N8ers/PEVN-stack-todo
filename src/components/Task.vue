@@ -11,14 +11,17 @@
         @change="toggleCheckbox"
       />
     </td>
-    <td class="td">
+    <td v-if="canEdit" class="td">
       <input type="text" v-model="task.name" />
     </td>
-    <td class="td">
+    <td v-else class="td">
       {{ task.name }} || {{ task.sort_order }} || 'recalculated sort order'
     </td>
-    <td class="td">
-      <button @click="editTask(task)" class="button">edit</button>
+    <td v-if="canEdit" class="td">
+      <button @click="editTask(task)" class="button">save</button>
+    </td>
+    <td v-else class="td">
+      <button @click="toggleEdit" class="button">edit</button>
     </td>
     <td class="td">
       <button @click="removeTask(task)" class="button">X</button>
@@ -34,7 +37,9 @@ export default {
   },
   components: {},
   data() {
-    return {};
+    return {
+      canEdit: false
+    };
   },
   methods: {
     toggleCheckbox: function() {
@@ -42,9 +47,13 @@ export default {
     },
     editTask: function() {
       this.$emit("emitEditTask", this.task);
+      this.toggleEdit();
     },
     removeTask: function() {
       this.$emit("emitRemoveTask", this.task);
+    },
+    toggleEdit: function() {
+      this.canEdit = !this.canEdit;
     }
   },
   computed: {}
