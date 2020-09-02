@@ -3,31 +3,19 @@
     <table class="table">
       <draggable v-model="taskList" class="tbody">
         <tr class="tr" v-for="task in taskList" :key="task.id">
-          <td class="icon moveable">
-            <i class="fas fa-grip-vertical"></i>
-          </td>
-          <td class="td">
-            <input
-              type="checkbox"
-              class="checkbox"
-              v-model="task.completed"
-              @change="toggleCheckbox(task)"
-            />
-          </td>
-          <td class="td">
-            {{ task.name }} || {{ task.sort_order }} || 'recalculated sort
-            order'
-          </td>
-          <td class="td">
-            <button @click="removeTask(task)" class="button">X</button>
-          </td>
+          <Task
+            :task="task"
+            @emitToggleCheckbox="toggleCheckbox"
+            @emitRemoveTask="removeTask"
+            @emitEditTask="editTask"
+          />
         </tr>
       </draggable>
     </table>
 
     <form @submit.prevent="addTask">
       <input
-        v-model="newTask.name"
+        v-model="newTaskName"
         type="text"
         class="input input-width"
         placeholder="Feed the turtles..."
@@ -37,33 +25,34 @@
   </div>
 </template>
 
-// Nathan - we may want to make a task item component to handle toggling/editing
-
 <script>
 import draggable from "vuedraggable";
+
+import Task from "./Task";
 
 export default {
   name: "TaskList",
   props: {
     taskList: Array
   },
-  components: { draggable },
+  components: { draggable, Task },
   data() {
     return {
-      newTask: {
-        name: ""
-      }
+      newTaskName: ""
     };
   },
   methods: {
     addTask: function() {
       let newTask = {
-        name: this.newTask.name,
+        name: this.newTaskName,
         sortOrder: this.taskList.length + 1
       };
       this.$store.dispatch("tasks/addTask", newTask).then(() => {
-        this.newTask.name = "";
+        this.newTaskName = "";
       });
+    },
+    editTask: function(task) {
+      console.log("task ", task);
     },
     removeTask: function(task) {
       this.$store.dispatch("tasks/deleteTask", task);
