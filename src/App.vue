@@ -3,7 +3,13 @@
     <div class="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/auth">Auth</router-link> |
-      <button class="button is-primary" @click="logoutUser">logout</button>
+      <button
+        v-if="userIsLoggedIn"
+        class="button is-primary"
+        @click="logoutUser"
+      >
+        logout
+      </button>
     </div>
     <router-view />
   </div>
@@ -17,6 +23,15 @@ export default {
   methods: {
     logoutUser: function() {
       this.$store.dispatch("auth/logoutUser");
+    }
+  },
+  computed: {
+    userIsLoggedIn: function() {
+      let user = this.$store.state.auth.user;
+      if (user && user.id && user.email && user.name) {
+        return true;
+      }
+      return false;
     }
   },
   created() {
