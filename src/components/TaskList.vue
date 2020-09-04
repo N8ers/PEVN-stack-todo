@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="table">
+    <table class="table is-fullwidth">
       <draggable v-model="taskList" class="tbody">
         <tr class="tr" v-for="task in taskList" :key="task.id">
           <Task

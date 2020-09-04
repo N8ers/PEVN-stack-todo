@@ -2,10 +2,10 @@
   <div class="app container">
     <div class="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/auth">Auth</router-link> |
+      <router-link to="/auth">Auth</router-link>
       <button
-        v-if="userIsLoggedIn"
-        class="button is-primary"
+        v-if="!userIsLoggedIn"
+        class="button is-primary is-pulled-right"
         @click="logoutUser"
       >
         logout

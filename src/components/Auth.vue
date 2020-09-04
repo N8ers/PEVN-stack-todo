@@ -11,9 +11,8 @@
         </p>
       </div>
 
-      <template v-if="showSignIn" class="column is-half">
+      <div v-if="showSignIn" class="column is-half mt-4">
         <form @submit.prevent="attemptLogin">
-          <h3>Sign In</h3>
           <input
             v-model="user.email"
             type="email"
@@ -23,19 +22,20 @@
           <input
             v-model="user.password"
             type="password"
-            class="input"
+            class="input mt-2"
             placeholder="Password"
           />
-          <button class="button green" type="submit">Sign In</button>
-          <button class="button" type="button" @click="toggleAuth">
-            Want to register?
-          </button>
+          <div class="mt-2 is-pulled-right">
+            <button class="button is-primary" type="submit">Sign In</button>
+            <button class="button" type="button" @click="toggleAuth">
+              Want to register?
+            </button>
+          </div>
         </form>
-      </template>
+      </div>
 
-      <template v-else class="column is-half">
+      <div v-else class="column is-half mt-4">
         <form @submit.prevent="attemptSignup">
-          <h3>Sign Up</h3>
           <input
             v-model="newUser.email"
             type="email"
@@ -45,21 +45,23 @@
           <input
             v-model="newUser.name"
             type="text"
-            class="input"
+            class="input mt-2"
             placeholder="Name"
           />
           <input
             v-model="newUser.password"
             type="password"
-            class="input"
+            class="input mt-2"
             placeholder="Password"
           />
-          <button class="button" type="submit">Sign up!</button>
-          <button class="button" type="button" @click="toggleAuth">
-            Already have a login?
-          </button>
+          <div class="mt-2 is-pulled-right">
+            <button class="button is-primary" type="submit">Sign up!</button>
+            <button class="button" type="button" @click="toggleAuth">
+              Already have a login?
+            </button>
+          </div>
         </form>
-      </template>
+      </div>
     </div>
   </div>
 </template>

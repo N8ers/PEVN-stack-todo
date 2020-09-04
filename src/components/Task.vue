@@ -1,6 +1,6 @@
 <template>
   <div>
-    <td class="icon moveable">
+    <td class="td icon moveable">
       <i class="fas fa-grip-vertical"></i>
     </td>
     <td class="td">
@@ -11,19 +11,19 @@
         @change="toggleCheckbox"
       />
     </td>
+
     <td v-if="canEdit" class="td">
-      <input type="text" v-model="task.name" />
+      <input class="input" type="text" v-model="task.name" />
     </td>
     <td v-else class="td">
       {{ task.name }} || {{ task.sort_order }} || 'recalculated sort order'
     </td>
-    <td v-if="canEdit" class="td">
-      <button @click="editTask(task)" class="button">save</button>
-    </td>
-    <td v-else class="td">
-      <button @click="toggleEdit" class="button">edit</button>
-    </td>
+
     <td class="td">
+      <button v-if="canEdit" @click="editTask(task)" class="button">
+        save
+      </button>
+      <button v-else @click="toggleEdit" class="button">edit</button>
       <button @click="removeTask(task)" class="button">X</button>
     </td>
   </div>
