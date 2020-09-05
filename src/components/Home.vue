@@ -1,8 +1,8 @@
 <template>
-  <div class="container mt-6">
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <h4 class="is-size-2">What needs to get done!</h4>
+  <div class="mt-6">
+    <div class="home-container">
+      <div class="">
+        <h4 class="is-size-2 is-centered">What needs to get done!</h4>
         <br />
         <TaskList v-if="tasks" :taskList="tasks" />
       </div>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <table class="table is-fullwidth">
+  <div class="table-container">
+    <table class="table table-custom is-fullwidth">
       <draggable v-model="taskList" class="tbody">
         <tr class="tr" v-for="task in taskList" :key="task.id">
           <Task
@@ -20,7 +20,7 @@
         class="input input-width"
         placeholder="Feed the turtles..."
       />
-      <button type="submit" class="button">add task</button>
+      <button type="submit" class="button is-primary">add task</button>
     </form>
   </div>
 </template>

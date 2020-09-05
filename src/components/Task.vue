@@ -1,30 +1,41 @@
 <template>
   <div>
-    <td class="td icon moveable">
-      <i class="fas fa-grip-vertical"></i>
+    <td class="td moveable">
+      <i class="fas fa-grip-vertical grab-icon"></i>
     </td>
     <td class="td">
       <input
         type="checkbox"
-        class="checkbox"
+        class="checkbox checkbox-custom"
         v-model="task.completed"
         @change="toggleCheckbox"
       />
     </td>
 
-    <td v-if="canEdit" class="td">
-      <input class="input" type="text" v-model="task.name" />
+    <td class="td">
+      <input
+        class="input todo-content"
+        type="text"
+        :disabled="!canEdit"
+        v-model="task.name"
+      />
     </td>
-    <td v-else class="td">
+    <!-- <td v-else class="td moveable todo-content">
+      {{ task.name }}
+    </td> -->
+
+    <!-- <td v-else class="td moveable">
       {{ task.name }} || {{ task.sort_order }} || 'recalculated sort order'
-    </td>
+    </td> -->
 
     <td class="td">
       <button v-if="canEdit" @click="editTask(task)" class="button">
         save
       </button>
       <button v-else @click="toggleEdit" class="button">edit</button>
-      <button @click="removeTask(task)" class="button">X</button>
+    </td>
+    <td class="td">
+      <button @click="removeTask(task)" class="button is-danger">X</button>
     </td>
   </div>
 </template>

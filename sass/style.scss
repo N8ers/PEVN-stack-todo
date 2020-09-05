@@ -9,8 +9,27 @@ $blue: #2c3e50;
   color: white;  
 }
 
+.home-container {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.todo-container {
+  margin: 0 auto;
+}
+
+.grab-icon {
+  margin-top: 13px;
+}
+
+.checkbox-custom {
+  margin-top: 15px;
+}
+
 .input-width {
-  width: 33%;
+  width: 330px;
+  margin-right: 10px;
 }
 
 .moveable {
