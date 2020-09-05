@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="task">
     <td class="td moveable">
       <i class="fas fa-grip-vertical grab-icon"></i>
     </td>
@@ -12,9 +12,9 @@
       />
     </td>
 
-    <td class="td">
+    <td class="td task-content">
       <input
-        class="input todo-content"
+        class="input task-content"
         type="text"
         :disabled="!canEdit"
         v-model="task.name"

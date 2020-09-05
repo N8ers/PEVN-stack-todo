@@ -1,7 +1,7 @@
 <template>
-  <div class="table-container">
-    <table class="table table-custom is-fullwidth">
-      <draggable v-model="taskList" class="tbody">
+  <div>
+    <table class="table">
+      <draggable v-model="taskList">
         <tr class="tr" v-for="task in taskList" :key="task.id">
           <Task
             :task="task"

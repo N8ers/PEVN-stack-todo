@@ -10,9 +10,12 @@ $blue: #2c3e50;
 }
 
 .home-container {
-  margin: auto;
-  width: 50%;
+  margin: 0 auto;
   padding: 10px;
+}
+
+.task-content {
+  width: 250px;
 }
 
 .todo-container {
@@ -28,7 +31,7 @@ $blue: #2c3e50;
 }
 
 .input-width {
-  width: 330px;
+  width: 382px;
   margin-right: 10px;
 }
 
