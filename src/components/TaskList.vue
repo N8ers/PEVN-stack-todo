@@ -1,8 +1,8 @@
 <template>
   <div>
     <table class="table">
-      <draggable v-model="taskList">
-        <tr class="tr" v-for="task in taskList" :key="task.id">
+      <draggable v-model="tasks">
+        <tr class="tr" v-for="task in tasks" :key="task.id">
           <Task
             :task="task"
             @emitToggleCheckbox="toggleCheckbox"
@@ -32,9 +32,6 @@ import Task from "./Task";
 
 export default {
   name: "TaskList",
-  props: {
-    taskList: Array
-  },
   components: { draggable, Task },
   data() {
     return {
@@ -45,7 +42,7 @@ export default {
     addTask: function() {
       let newTask = {
         name: this.newTaskName,
-        sortOrder: this.taskList.length + 1
+        sortOrder: this.tasks.length + 1
       };
       this.$store.dispatch("tasks/addTask", newTask).then(() => {
         this.newTaskName = "";
@@ -61,6 +58,18 @@ export default {
       this.$store.dispatch("tasks/toggleCompletion", task);
     }
   },
-  computed: {}
+  computed: {
+    tasks: {
+      get() {
+        return this.$store.state.tasks.tasks;
+      },
+      set(newOrder) {
+        for (let task in newOrder) {
+          newOrder[task].sort_order = task;
+        }
+        this.$store.commit("tasks/UPDATE_TASKS", newOrder);
+      }
+    }
+  }
 };
 </script>

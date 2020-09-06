@@ -13,6 +13,9 @@ export const state = {
 export const mutations = {
   SET_TASKS: function(store, tasks) {
     store.tasks = tasks;
+  },
+  UPDATE_TASKS: function(store, tasks) {
+    store.tasks = tasks;
   }
 };
 
