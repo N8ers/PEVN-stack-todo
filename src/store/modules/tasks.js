@@ -3,7 +3,8 @@ import {
   addNewTask,
   deleteTask,
   toggleCompletion,
-  updateTask
+  updateTask,
+  updateSortOrder
 } from "../../axios/events";
 
 export const state = {
@@ -12,9 +13,6 @@ export const state = {
 
 export const mutations = {
   SET_TASKS: function(store, tasks) {
-    store.tasks = tasks;
-  },
-  UPDATE_TASKS: function(store, tasks) {
     store.tasks = tasks;
   }
 };
@@ -39,6 +37,10 @@ export const actions = {
 
   async updateTask(store, task) {
     await updateTask(task);
+  },
+
+  async updateSortOrder(store, tasks) {
+    await updateSortOrder(tasks);
   }
 };
 

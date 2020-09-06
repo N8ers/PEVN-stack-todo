@@ -89,3 +89,12 @@ export async function updateTask(task) {
     getUserTasks();
   }
 }
+
+export async function updateSortOrder(tasks) {
+  setToken();
+  let response = await apiClient.put("/tasks/updateSortOrder", tasks);
+
+  if (response.data.message && response.data.message === "success") {
+    getUserTasks();
+  }
+}
