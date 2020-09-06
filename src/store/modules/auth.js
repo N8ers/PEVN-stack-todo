@@ -9,24 +9,34 @@ export const state = {
     id: null,
     email: null,
     name: null
-  }
+  },
+  loginFailed: false,
+  loginCreationSussess: null,
+  emailAlreadyInUse: null
 };
 
 export const mutations = {
-  mutationTest: function() {
-    alert("mutation called");
-  },
   SET_USER: function(state, userPayload) {
     state.user = userPayload;
   },
   LOG_OUT_USER: function(state) {
     state.user = null;
     localStorage.clear();
+  },
+  LOGIN_FAILED: function(state, bool) {
+    state.loginFailed = bool;
+  },
+  CREATE_USER_STATUS: function(state, bool) {
+    state.loginCreationSussess = bool;
+  },
+  EMAIL_ALREAY_IN_USE: function(state, bool) {
+    state.emailAlreadyInUse = bool;
   }
 };
 
 export const actions = {
   async loginUser(context, user) {
+    console.log("action ", user);
     await attemptLogin(user);
   },
   async logoutUser({ commit }) {
@@ -36,6 +46,7 @@ export const actions = {
     await attemptAuthentication(token);
   },
   async signupUser(context, newUser) {
+    console.log("action ", newUser);
     await attemptSignup(newUser);
   }
 };

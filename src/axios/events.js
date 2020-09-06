@@ -18,10 +18,11 @@ function setToken() {
 }
 
 export async function attemptLogin(payload) {
+  console.log("payload ", payload);
   let response = await apiClient.post("/auth/login", { payload });
 
-  if (response.data.loginSuccess === "false") {
-    alert("login failed");
+  if (response.data.loginSuccess == false) {
+    store.commit("auth/LOGIN_FAILED", true);
   } else {
     localStorage.setItem("token", response.data.jwt);
     store.commit("auth/SET_USER", response.data.userData);
@@ -33,17 +34,27 @@ export async function attemptAuthentication(payload) {
   let response = await apiClient.post("/auth/check-jwt");
 
   if (response.data.loginSuccess === "false") {
-    alert("login failed");
+    store.commit("auth/LOGIN_FAILED", true);
   } else {
     store.commit("auth/SET_USER", response.data.userData);
   }
 }
 
 export async function attemptSignup(newUser) {
+  console.log("axios ", newUser);
   let response = await apiClient.post("/auth/createUser", newUser);
 
+  console.log("response ", response);
+
   if (response.data.message && response.data.message === "success") {
-    alert("GREAT! go ahead and log in!");
+    store.commit("auth/CREATE_USER_STATUS", true);
+  } else if (
+    response.data.message &&
+    response.data.message === "email already in use"
+  ) {
+    store.commit("auth/EMAIL_ALREAY_IN_USE", true);
+  } else {
+    store.commit("auth/CREATE_USER_STATUS", false);
   }
 }
 

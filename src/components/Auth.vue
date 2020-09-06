@@ -12,6 +12,13 @@
       </div>
 
       <div v-if="showSignIn" class="column is-half mt-4">
+        <div
+          v-if="$store.state.auth.loginFailed"
+          class="notification is-danger"
+        >
+          <button class="delete" @click="removeSigninFailedBanner"></button>
+          Login failed...
+        </div>
         <form @submit.prevent="attemptLogin">
           <input
             v-model="user.email"
@@ -35,6 +42,26 @@
       </div>
 
       <div v-else class="column is-half mt-4">
+        <div
+          v-if="$store.state.auth.loginCreationSussess"
+          class="notification is-info"
+        >
+          account created - try logging in!
+        </div>
+        <div
+          v-if="$store.state.auth.loginCreationSussess === false"
+          class="notification is-danger"
+        >
+          <button class="delete" @click="removeSignupFailedBanner"></button>
+          there was a problem creating your account...
+        </div>
+        <div
+          v-if="$store.state.auth.emailAlreadyInUse === true"
+          class="notification is-info"
+        >
+          <button class="delete" @click="removeSignupFailedBanner"></button>
+          email already in use, try logging in...
+        </div>
         <form @submit.prevent="attemptSignup">
           <input
             v-model="newUser.email"
@@ -86,16 +113,32 @@ export default {
   },
   methods: {
     attemptLogin: function() {
-      this.$store.dispatch("auth/loginUser", this.user);
+      if (this.user.email && this.user.password) {
+        this.$store.dispatch("auth/loginUser", this.user);
+      } else {
+        this.$store.commit("auth/LOGIN_FAILED", true);
+      }
     },
     attemptSignup: function() {
-      this.$store.dispatch("auth/signupUser", this.newUser);
-      this.newUser.email = null;
-      this.newUser.name = null;
-      this.newUser.password = null;
+      console.log(this.newUser);
+      if (this.newUser.email && this.newUser.name && this.newUser.password) {
+        console.log("dispatch ", this.newUser);
+        this.$store.dispatch("auth/signupUser", this.newUser);
+        // this.newUser.email = null;
+        // this.newUser.name = null;
+        // this.newUser.password = null;
+      } else {
+        this.$store.commit("auth/CREATE_USER_STATUS", false);
+      }
     },
     toggleAuth: function() {
       this.showSignIn = !this.showSignIn;
+    },
+    removeSigninFailedBanner: function() {
+      this.$store.commit("auth/LOGIN_FAILED", false);
+    },
+    removeSignupFailedBanner: function() {
+      this.$store.commit("auth/CREATE_USER_STATUS", null);
     }
   }
 };
