@@ -59,7 +59,7 @@
           v-if="$store.state.auth.emailAlreadyInUse === true"
           class="notification is-info"
         >
-          <button class="delete" @click="removeSignupFailedBanner"></button>
+          <button class="delete" @click="removeEmailInUseBanner"></button>
           email already in use, try logging in...
         </div>
         <form @submit.prevent="attemptSignup">
@@ -139,6 +139,9 @@ export default {
     },
     removeSignupFailedBanner: function() {
       this.$store.commit("auth/CREATE_USER_STATUS", null);
+    },
+    removeEmailInUseBanner: function() {
+      this.$store.commit("auth/EMAIL_ALREADY_IN_USE", false);
     }
   }
 };

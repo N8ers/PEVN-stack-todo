@@ -29,7 +29,7 @@ export const mutations = {
   CREATE_USER_STATUS: function(state, bool) {
     state.loginCreationSussess = bool;
   },
-  EMAIL_ALREAY_IN_USE: function(state, bool) {
+  EMAIL_ALREADY_IN_USE: function(state, bool) {
     state.emailAlreadyInUse = bool;
   }
 };

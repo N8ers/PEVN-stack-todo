@@ -52,7 +52,7 @@ export async function attemptSignup(newUser) {
     response.data.message &&
     response.data.message === "email already in use"
   ) {
-    store.commit("auth/EMAIL_ALREAY_IN_USE", true);
+    store.commit("auth/EMAIL_ALREADY_IN_USE", true);
   } else {
     store.commit("auth/CREATE_USER_STATUS", false);
   }
