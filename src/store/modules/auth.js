@@ -1,3 +1,5 @@
+import router from "../../router/index";
+
 import {
   attemptLogin,
   attemptAuthentication,
@@ -18,10 +20,12 @@ export const state = {
 export const mutations = {
   SET_USER: function(state, userPayload) {
     state.user = userPayload;
+    router.push({ path: "/" });
   },
   LOG_OUT_USER: function(state) {
     state.user = null;
     localStorage.clear();
+    router.push({ path: "/auth" });
   },
   LOGIN_FAILED: function(state, bool) {
     state.loginFailed = bool;
