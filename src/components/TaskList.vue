@@ -63,12 +63,10 @@ export default {
       get() {
         return this.$store.state.tasks.tasks;
       },
-      set(newOrder, oldOrder) {
+      set(newOrder) {
         for (let task in newOrder) {
           newOrder[task].sort_order = task;
         }
-
-        console.log(newOrder, oldOrder);
         this.$store.dispatch("tasks/updateSortOrder", newOrder);
       }
     }

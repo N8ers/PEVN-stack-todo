@@ -40,7 +40,6 @@ export const mutations = {
 
 export const actions = {
   async loginUser(context, user) {
-    console.log("action ", user);
     await attemptLogin(user);
   },
   async logoutUser({ commit }) {
@@ -50,7 +49,6 @@ export const actions = {
     await attemptAuthentication(token);
   },
   async signupUser(context, newUser) {
-    console.log("action ", newUser);
     await attemptSignup(newUser);
   }
 };

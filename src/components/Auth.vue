@@ -120,13 +120,8 @@ export default {
       }
     },
     attemptSignup: function() {
-      console.log(this.newUser);
       if (this.newUser.email && this.newUser.name && this.newUser.password) {
-        console.log("dispatch ", this.newUser);
         this.$store.dispatch("auth/signupUser", this.newUser);
-        // this.newUser.email = null;
-        // this.newUser.name = null;
-        // this.newUser.password = null;
       } else {
         this.$store.commit("auth/CREATE_USER_STATUS", false);
       }

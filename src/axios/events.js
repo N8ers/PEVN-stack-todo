@@ -18,7 +18,6 @@ function setToken() {
 }
 
 export async function attemptLogin(payload) {
-  console.log("payload ", payload);
   let response = await apiClient.post("/auth/login", { payload });
 
   if (response.data.loginSuccess == false) {
@@ -41,10 +40,7 @@ export async function attemptAuthentication(payload) {
 }
 
 export async function attemptSignup(newUser) {
-  console.log("axios ", newUser);
   let response = await apiClient.post("/auth/createUser", newUser);
-
-  console.log("response ", response);
 
   if (response.data.message && response.data.message === "success") {
     store.commit("auth/CREATE_USER_STATUS", true);
